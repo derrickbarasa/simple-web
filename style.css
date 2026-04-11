@@ -1,0 +1,26 @@
+body {
+    font-family: Arial;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery img {
+    width: 150px;
+    height: 200px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+}
+
+.gallery img:hover {
+    border-color: black;
+}
+
+form {
+    margin-top: 20px;
+}

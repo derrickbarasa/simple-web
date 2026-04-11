@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+    <title>Fashion Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>FASHION</h1>
+<p>Hello, welcome to our page where we give out outfits inspo to all those who want to level up their fashion game.</p>
+<p>Feel free to look around at some of orour outfits in the outfit gallery below and choose the style which fits you best.Each person has their style thats why we are here to help you.</p>
+<p>For those having issues choosing wahat is best for them or cannot find the style which suites you, you can reach out to us via: <p>Phone: <a href="tel:+254713486533">+254713486533</a></p> </p>
+
+<h2>Outfit Gallery</h2>
+
+<div class="gallery">
+    <button type="button" class="gallery-item" onclick="selectOutfit('casual')">
+        <img src="casual.jpg" alt="Casual outfit">
+    </button>
+    <button type="button" class="gallery-item" onclick="selectOutfit('classy')">
+        <img src="classy.jpg" alt="Classy outfit">
+    </button>
+    <button type="button" class="gallery-item" onclick="selectOutfit('jean')">
+        <img src="jean.jpg" alt="Jeans outfit">
+    </button>
+    <button type="button" class="gallery-item" onclick="selectOutfit('office')">
+        <img src="office.jpg" alt="Office outfit">
+    </button>
+    <button type="button" class="gallery-item" onclick="selectOutfit('official')">
+        <img src="official.jpg" alt="Official outfit">
+    </button>
+    <button type="button" class="gallery-item" onclick="selectOutfit('white')">
+        <img src="white.png" alt="White outfit">
+    </button>
+    <button type="button" class="gallery-item" onclick="selectOutfit('date')">
+        <img src="date.png" alt="Date outfit">
+    </button>
+</div>
+<p>Do not forget to leave your feedback below about the available fits and feel free to give out your opinion it its for you, on what we can improve, and also an outfit of your own which you would like to share with others.</p>
+
+<h3>Feedback</h3>
+
+<form action="process.php" method="POST" onsubmit="return validateForm()">
+    <input type="text" id="name" name="name" placeholder="Your Name"><br><br>
+    
+    <input type="text" id="outfit" name="outfit" placeholder="Selected Outfit" readonly><br><br>
+    
+    <textarea name="comment" id="comment" placeholder="Your Comment"></textarea><br><br>
+    
+    <button type="submit">Submit</button>
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>
