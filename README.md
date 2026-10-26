@@ -6,6 +6,10 @@ A fashion inspiration gallery using HTML, CSS, and vanilla JavaScript. No instal
 
 Open `fashion.html` directly in your browser. You can also use an existing static preview such as VS Code Live Server.
 
+## Host on Vercel
+
+Import `derrickbarasa/simple-web` from GitHub, keep Root Directory at `./`, and choose the Other application preset. The checked-in `vercel.json` serves the repository as static files, skips building, and maps `/` to `fashion.html`. No environment variables or local backend are required. Deploy the latest `main` commit. Email delivery still depends on the external FormSubmit service and recipient activation described below.
+
 ## Feedback delivery and private notes
 
 Send my feedback posts the visitor's name, chosen look, and message to `https://formsubmit.co/ajax/barasaderrick499@gmail.com`. FormSubmit forwards submissions to the email address supplied by the site owner. This address is public in the static HTML and JavaScript. Delivery requires an internet connection and the recipient's one-time FormSubmit activation. Check the recipient's inbox/spam folder for an activation email after the first submission, then confirm it. A submitted response confirms service acceptance, not arrival in the inbox. The UI keeps the text, prevents concurrent sends, and recovers after a 20-second timeout without automatically retrying. No attachments, analytics, or style preferences are sent.
