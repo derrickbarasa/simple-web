@@ -1,54 +1,249 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="en">
 <head>
-    <title>Fashion Gallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Find your next outfit inspiration. Explore everyday looks, office outfits, and styles for a night out.">
+    <title>Fashion — Find your next look</title>
+    <link rel="preload" href="assets/fonts/PlayfairDisplay-Variable.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Outfit-Variable.ttf" as="font" type="font/ttf" crossorigin>
+    <meta name="theme-color" content="#b61655">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-<h1>FASHION</h1>
-<p>Hello, welcome to our page where we give out outfits inspo to all those who want to level up their fashion game.</p>
-<p>Feel free to look around at some of orour outfits in the outfit gallery below and choose the style which fits you best.Each person has their style thats why we are here to help you.</p>
-<p>For those having issues choosing wahat is best for them or cannot find the style which suites you, you can reach out to us via: <p>Phone: <a href="tel:+254713486533">+254713486533</a></p> </p>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header wrap">
+    <a class="wordmark" href="fashion.html" aria-label="Fashion home">FASHION<span aria-hidden="true">.</span></a>
+    <nav aria-label="Main navigation">
+        <a href="#gallery">The looks</a>
+        <a href="#style-journal">Style journal</a>
+        <a href="#feedback">Your thoughts</a>
+        <a class="contact-link" href="tel:+254713486533">Let’s talk <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+    </nav>
+</header>
+<main id="main" class="wrap">
+    <section class="intro editorial-intro" aria-labelledby="intro-title">
+        <div class="intro-content"><h1 id="intro-title">Find a look.<br><em>Make it yours.</em></h1><div class="intro-copy"><p>Great style is in the way you put things together. Explore looks, find your favorite details, and build a wardrobe that feels like you.</p><div class="hero-actions"><a class="primary-button" href="#gallery">Explore the looks <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a><a class="text-link" href="#style-journal">Read the style journal</a></div></div><p class="hero-note">For every expression of personal style.</p></div>
+        <figure class="hero-visual"><a href="assets/editorial/expressive-layers.jpg" class="hero-photo-link" data-view="expressive" aria-label="View the featured Expressive tailoring look"><img src="assets/editorial/expressive-layers.jpg" alt="Textured brown tailoring, a patterned tie, and pale wide-leg trousers on a city street" width="1000" height="1250" fetchpriority="high"></a><figcaption><span>Expressive tailoring. A point of view.</span><a href="https://unsplash.com/photos/man-in-stylish-outfit-walks-down-street-X-Vp-swqmKQ" target="_blank" rel="noopener">Photo: Dion Martins</a></figcaption></figure>
+    </section>
 
-<h2>Outfit Gallery</h2>
+    <section id="gallery" class="gallery-section" aria-labelledby="gallery-title">
+        <div class="section-heading">
+            <h2 id="gallery-title">The outfit edit</h2>
+            <p>Different moods. Your own style.</p>
+        </div>
+        <div class="gallery-toolbar">
+            <div class="filters" role="group" aria-label="Filter outfits" hidden>
+                <button type="button" data-filter="all" aria-pressed="true">All looks</button>
+                <button type="button" data-filter="everyday" aria-pressed="false">Everyday</button>
+                <button type="button" data-filter="work" aria-pressed="false">For work</button>
+                <button type="button" data-filter="occasion" aria-pressed="false">Going out</button>
+                <button type="button" data-filter="favorites" aria-pressed="false">Favorites <span id="favorites-count">(0)</span></button>
+            </div>
+            <div class="style-control" hidden><label for="style-filter">Find your style</label><select id="style-filter"><option value="all">All styles</option><option value="relaxed">Relaxed</option><option value="tailored">Tailored</option><option value="minimal">Minimal</option><option value="bold">Bold</option></select></div>
+            <p id="look-count" role="status">9 looks to explore</p>
+        </div>
+        <div class="look-search" hidden>
+            <label for="look-search">Find a detail you love</label>
+            <div class="search-field"><input id="look-search" type="search" maxlength="100" placeholder="Try denim, burgundy, or dinner" aria-controls="outfit-grid" autocomplete="off"><button id="clear-search" type="button" class="clear-button" disabled>Clear search</button></div>
+        </div>
+        <div class="style-discovery" hidden>
+            <div class="filter-context"><p id="filter-summary">Showing all looks</p><button type="button" id="reset-filters" class="clear-button" disabled>Reset filters</button></div>
+        </div>
+        <div class="selection-toolbar">
+            <p class="gallery-help" id="gallery-help" role="status">Choose a look. Select it again to unselect.</p>
+            <button class="clear-button" id="clear-selection" type="button" disabled>Clear selection</button>
+        </div>
+        <p id="favorites-status" class="favorites-status" role="status"></p>
+        <div id="empty-favorites" class="empty-favorites" hidden>
+            <h3>Your collection starts here.</h3>
+            <p>Save a look using its heart button, then find it here whenever you need inspiration. Favorites stay in this browser.</p>
+            <button type="button" id="browse-all" class="primary-button">Explore all looks</button>
+        </div>
+        <div id="empty-results" class="empty-favorites" hidden><h3>No looks match this combination.</h3><p>Try another search or style, or reset the filters to explore the full collection.</p><button type="button" id="reset-empty" class="primary-button">Show all looks</button></div>
+        <section id="look-comparison" class="look-comparison" aria-labelledby="comparison-title" hidden>
+            <div class="comparison-heading"><div><h3 id="comparison-title">Two looks. Your perspective.</h3><p id="comparison-help">Compare colors, key pieces, and ways to wear them.</p></div><button id="clear-comparison" type="button" class="clear-button">Clear comparison</button></div>
+            <div id="comparison-grid" class="comparison-grid"></div>
+        </section>
+        <p id="comparison-status" class="comparison-status" role="status"></p>
+        <div id="outfit-grid" class="gallery" aria-describedby="gallery-help filter-summary">
+            <article class="look" data-category="everyday" data-styles="relaxed tailored">
+                <button type="button" class="gallery-item" data-outfit="casual" aria-pressed="false" aria-label="Select Casual layers">
+                    <span class="image-frame"><img src="casual.jpg" alt="Beige knitwear paired with dark tailored trousers" width="300" height="400"><span class="selection-label">Selected</span></span>
+                    <span class="look-caption"><span><strong>Casual layers</strong><span class="look-category">Everyday</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span>
+                </button>
+                <button type="button" class="favorite-button" data-favorite="casual" aria-pressed="false" aria-label="Favorite Casual layers" title="Save Casual layers to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">Soft knitwear, clean trousers, and a little contrast at the collar.</p><div class="look-palette" aria-label="Suggested color palette: Beige, Navy, White"><span class="color-swatch" style="--swatch:#c4a78c" title="Beige" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#242d40" title="Navy" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#f4f1e9" title="White" aria-hidden="true"></span><span>Beige / Navy / White</span></div><p class="style-tags">Relaxed / Tailored</p>
+                <a class="preview-link" href="casual.jpg" data-view="casual" aria-label="View full Casual layers outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details">
+                    <summary>Styling notes <span class="sr-only">for Casual layers</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>Coffee dates, relaxed office days, or a weekend lunch.</dd></div><div><dt>Balance the shape</dt><dd>Keep the knit slightly relaxed against the cleaner line of the trousers.</dd></div><div><dt>Easy swap</dt><dd>Trade the shirt and tie for a plain tee when you want less structure.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>Beige knitwear</li><li>Collared shirt and tie</li><li>Dark tailored trousers</li></ul><p><strong>Colors</strong><br>Beige, navy, and white</p><p><strong>Try it your way</strong><br>Try the knitwear with a plain T-shirt and sneakers for a more relaxed version.</p></div>
+                </details>
+            </article>
+            <article class="look" data-category="occasion" data-styles="bold tailored">
+                <button type="button" class="gallery-item" data-outfit="classy" aria-pressed="false" aria-label="Select A touch of class">
+                    <span class="image-frame"><img src="classy.jpg" alt="White top and burgundy skirt with matching accessories" width="300" height="400"><span class="selection-label">Selected</span></span>
+                    <span class="look-caption"><span><strong>A touch of class</strong><span class="look-category">Going out</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span>
+                </button>
+                <button type="button" class="favorite-button" data-favorite="classy" aria-pressed="false" aria-label="Favorite A touch of class" title="Save A touch of class to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">A simple white top lets rich burgundy and considered accessories lead.</p><div class="look-palette" aria-label="Suggested color palette: White, Burgundy, Gold tones"><span class="color-swatch" style="--swatch:#f5f2e9" title="White" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#731d35" title="Burgundy" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#b28a44" title="Gold tones" aria-hidden="true"></span><span>White / Burgundy / Gold tones</span></div><p class="style-tags">Bold / Tailored</p>
+                <a class="preview-link" href="classy.jpg" data-view="classy" aria-label="View full A touch of class outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details">
+                    <summary>Styling notes <span class="sr-only">for A touch of class</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>Dinner plans, a celebration, or an evening catch-up.</dd></div><div><dt>Balance the shape</dt><dd>A shorter, simpler top leaves room for the long skirt to carry the outfit.</dd></div><div><dt>Easy swap</dt><dd>Try a flat shoe and a softer bag for a more casual version.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>White top</li><li>Burgundy skirt</li><li>Coordinating bag and gold-tone accessories</li></ul><p><strong>Colors</strong><br>White, burgundy, and gold tones</p><p><strong>Try it your way</strong><br>Let the burgundy pieces lead. Keep the rest of the accessories simple for an easy balance.</p></div>
+                </details>
+            </article>
+            <article class="look" data-category="everyday" data-styles="relaxed bold">
+                <button type="button" class="gallery-item" data-outfit="jean" aria-pressed="false" aria-label="Select Denim days">
+                    <span class="image-frame"><img src="jean.jpg" alt="Dark jacket, gray top, and relaxed cargo jeans" width="300" height="400"><span class="selection-label">Selected</span></span>
+                    <span class="look-caption"><span><strong>Denim days</strong><span class="look-category">Everyday</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span>
+                </button>
+                <button type="button" class="favorite-button" data-favorite="jean" aria-pressed="false" aria-label="Favorite Denim days" title="Save Denim days to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">Relaxed denim and a dark jacket make room for a confident silhouette.</p><div class="look-palette" aria-label="Suggested color palette: Charcoal, Gray, Denim"><span class="color-swatch" style="--swatch:#303031" title="Charcoal" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#797976" title="Gray" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#808b91" title="Denim" aria-hidden="true"></span><span>Charcoal / Gray / Denim</span></div><p class="style-tags">Relaxed / Bold</p>
+                <a class="preview-link" href="jean.jpg" data-view="jean" aria-label="View full Denim days outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details">
+                    <summary>Styling notes <span class="sr-only">for Denim days</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>City walks, concerts, or off-duty afternoons.</dd></div><div><dt>Balance the shape</dt><dd>Choose a closer-fitting base layer if you want to offset the roomy jeans.</dd></div><div><dt>Easy swap</dt><dd>Replace the dark jacket with an open shirt for a lighter layer.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>Dark jacket</li><li>Gray top</li><li>Relaxed cargo jeans</li></ul><p><strong>Colors</strong><br>Charcoal, gray, and washed denim</p><p><strong>Try it your way</strong><br>Balance the loose jeans with a fitted top, or keep the relaxed shape and add clean sneakers.</p></div>
+                </details>
+            </article>
+            <article class="look" data-category="work" data-styles="tailored minimal">
+                <button type="button" class="gallery-item" data-outfit="office" aria-pressed="false" aria-label="Select Office hours">
+                    <span class="image-frame"><img src="office.jpg" alt="Light blouse, black trousers, and black ankle boots" width="300" height="400"><span class="selection-label">Selected</span></span>
+                    <span class="look-caption"><span><strong>Office hours</strong><span class="look-category">For work</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span>
+                </button>
+                <button type="button" class="favorite-button" data-favorite="office" aria-pressed="false" aria-label="Favorite Office hours" title="Save Office hours to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">Sharp monochrome, softened by an easy blouse and a clean tuck.</p><div class="look-palette" aria-label="Suggested color palette: White, Black"><span class="color-swatch" style="--swatch:#f4f2ef" title="White" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#232527" title="Black" aria-hidden="true"></span><span>White / Black</span></div><p class="style-tags">Tailored / Minimal</p>
+                <a class="preview-link" href="office.jpg" data-view="office" aria-label="View full Office hours outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details">
+                    <summary>Styling notes <span class="sr-only">for Office hours</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>Meetings, presentations, or a smart daytime event.</dd></div><div><dt>Balance the shape</dt><dd>Try a tucked or half-tucked blouse to define the waist above wider trousers.</dd></div><div><dt>Easy swap</dt><dd>Loafers bring a softer finish than ankle boots.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>Light blouse</li><li>Black tailored trousers</li><li>Black ankle boots</li></ul><p><strong>Colors</strong><br>White and black</p><p><strong>Try it your way</strong><br>Try tucking in the blouse to define the waist. Add a structured bag to finish the look.</p></div>
+                </details>
+            </article>
+            <article class="look" data-category="work" data-styles="tailored minimal">
+                <button type="button" class="gallery-item" data-outfit="official" aria-pressed="false" aria-label="Select Sharp and simple">
+                    <span class="image-frame"><img src="official.jpg" alt="Burgundy sweater over a collared shirt with dark trousers" width="300" height="400" loading="lazy" decoding="async"><span class="selection-label">Selected</span></span>
+                    <span class="look-caption"><span><strong>Sharp &amp; simple</strong><span class="look-category">For work</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span>
+                </button>
+                <button type="button" class="favorite-button" data-favorite="official" aria-pressed="false" aria-label="Favorite Sharp &amp; simple" title="Save Sharp &amp; simple to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">A rich sweater gives the classic shirt-and-trouser pairing more depth.</p><div class="look-palette" aria-label="Suggested color palette: Burgundy, White, Black"><span class="color-swatch" style="--swatch:#752a34" title="Burgundy" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#f3f0e9" title="White" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#242424" title="Black" aria-hidden="true"></span><span>Burgundy / White / Black</span></div><p class="style-tags">Tailored / Minimal</p>
+                <a class="preview-link" href="official.jpg" data-view="official" aria-label="View full Sharp &amp; simple outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details">
+                    <summary>Styling notes <span class="sr-only">for Sharp &amp; simple</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>Office days, a lunch meeting, or a dressed-up evening.</dd></div><div><dt>Balance the shape</dt><dd>Let a little collar show and keep the shirt hem neat under the knit.</dd></div><div><dt>Easy swap</dt><dd>Try a crew-neck knit or a simple tee underneath for a different neckline.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>Burgundy sweater</li><li>White collared shirt</li><li>Dark trousers</li></ul><p><strong>Colors</strong><br>Burgundy, white, and black</p><p><strong>Try it your way</strong><br>Keep the shirt collar neat and pair with loafers for a polished take on this combination.</p></div>
+                </details>
+            </article>
+            <article class="look" data-category="everyday" data-styles="minimal relaxed">
+                <button type="button" class="gallery-item" data-outfit="white" aria-pressed="false" aria-label="Select Back to basics">
+                    <span class="image-frame"><img src="white.png" alt="White button-up shirt with black wide-leg trousers" width="300" height="400" loading="lazy" decoding="async"><span class="selection-label">Selected</span></span>
+                    <span class="look-caption"><span><strong>Back to basics</strong><span class="look-category">Everyday</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span>
+                </button>
+                <button type="button" class="favorite-button" data-favorite="white" aria-pressed="false" aria-label="Favorite Back to basics" title="Save Back to basics to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">A white shirt and dark trousers: a clean canvas for your own details.</p><div class="look-palette" aria-label="Suggested color palette: White, Black"><span class="color-swatch" style="--swatch:#f5f3ee" title="White" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#242424" title="Black" aria-hidden="true"></span><span>White / Black</span></div><p class="style-tags">Minimal / Relaxed</p>
+                <a class="preview-link" href="white.png" data-view="white" aria-label="View full Back to basics outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details">
+                    <summary>Styling notes <span class="sr-only">for Back to basics</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>Work, a gallery visit, or a casual dinner.</dd></div><div><dt>Balance the shape</dt><dd>Roll the sleeves or loosen the shirt to contrast with the trouser shape.</dd></div><div><dt>Easy swap</dt><dd>Add a colorful belt, bag, or shoe rather than changing the whole outfit.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>White button-up shirt</li><li>Black wide-leg trousers</li></ul><p><strong>Colors</strong><br>White and black</p><p><strong>Try it your way</strong><br>Try rolling up the sleeves and adding one colorful accessory to make the simple palette your own.</p></div>
+                </details>
+            </article>
+            <article class="look" data-category="occasion" data-styles="bold minimal">
+                <button type="button" class="gallery-item" data-outfit="date" aria-pressed="false" aria-label="Select Date night">
+                    <span class="image-frame"><img src="date.png" alt="Navy evening dress with black bag, heels, and gold jewelry" width="300" height="400" loading="lazy" decoding="async"><span class="selection-label">Selected</span></span>
+                    <span class="look-caption"><span><strong>Date night</strong><span class="look-category">Going out</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span>
+                </button>
+                <button type="button" class="favorite-button" data-favorite="date" aria-pressed="false" aria-label="Favorite Date night" title="Save Date night to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">A navy dress and small gold accents keep the evening look focused.</p><div class="look-palette" aria-label="Suggested color palette: Navy, Black, Gold tones"><span class="color-swatch" style="--swatch:#182c4c" title="Navy" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#252324" title="Black" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#b68b45" title="Gold tones" aria-hidden="true"></span><span>Navy / Black / Gold tones</span></div><p class="style-tags">Bold / Minimal</p>
+                <a class="preview-link" href="date.png" data-view="date" aria-label="View full Date night outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details">
+                    <summary>Styling notes <span class="sr-only">for Date night</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>Date nights, evening celebrations, or a special dinner.</dd></div><div><dt>Balance the shape</dt><dd>Keep the accessories lighter when the dress already sets a strong shape.</dd></div><div><dt>Easy swap</dt><dd>Try a smaller heel or a dressy flat if that suits the way you move.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>Navy evening dress</li><li>Black bag and heels</li><li>Gold-tone jewelry</li></ul><p><strong>Colors</strong><br>Navy, black, and gold tones</p><p><strong>Try it your way</strong><br>Choose one standout accessory and keep the others understated so the dress stays the focus.</p></div>
+                </details>
+            </article>
+            <article class="look is-photograph" data-category="everyday" data-styles="relaxed minimal">
+                <button type="button" class="gallery-item" data-outfit="city" aria-pressed="false" aria-label="Select City ease"><span class="image-frame"><img src="assets/editorial/city-streetwear.jpg" alt="Black T-shirt, denim shorts, tall socks, and chunky white sneakers worn outdoors" width="300" height="400" loading="lazy" decoding="async"><span class="selection-label">Selected</span></span><span class="look-caption"><span><strong>City ease</strong><span class="look-category">Everyday</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span></button>
+                <button type="button" class="favorite-button" data-favorite="city" aria-pressed="false" aria-label="Favorite City ease" title="Save City ease to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">An easy tee, denim, and a strong sneaker shape do the everyday work.</p><div class="look-palette" aria-label="Suggested color palette: Black, Denim blue, Ivory"><span class="color-swatch" style="--swatch:#272827" title="Black" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#91a4ae" title="Denim blue" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#e7e4d7" title="Ivory" aria-hidden="true"></span><span>Black / Denim blue / Ivory</span></div><p class="style-tags">Relaxed / Minimal</p><a class="preview-link" href="assets/editorial/city-streetwear.jpg" data-view="city" aria-label="View full City ease outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details"><summary>Styling notes <span class="sr-only">for City ease</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>A warm-weather city walk, weekend errands, or meeting friends.</dd></div><div><dt>Balance the shape</dt><dd>The loose tee and chunky shoes give a simple outfit a clear silhouette.</dd></div><div><dt>Easy swap</dt><dd>Use straight-leg jeans instead of shorts when you want more coverage.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>Relaxed black T-shirt</li><li>Denim shorts</li><li>Tall socks and chunky sneakers</li></ul><p><strong>Colors</strong><br>Black, denim blue, and ivory</p><p><strong>Try it your way</strong><br>Keep the tee loose or tuck just the front. The substantial sneakers balance the easy shape above.</p></div></details>
+            </article>
+            <article class="look is-photograph" data-category="work" data-styles="bold tailored">
+                <button type="button" class="gallery-item" data-outfit="expressive" aria-pressed="false" aria-label="Select Expressive tailoring"><span class="image-frame"><img src="assets/editorial/expressive-layers.jpg" alt="Brown corduroy blazer, patterned tie, dark scarf, and pale wide-leg trousers worn on a city street" width="300" height="400" loading="lazy" decoding="async"><span class="selection-label">Selected</span></span><span class="look-caption"><span><strong>Expressive tailoring</strong><span class="look-category">For work</span></span><span class="select-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path class="plus-path" d="M5 12h14M12 5v14"/><path class="check-path" d="m5 12 4 4 10-10"/></svg></span></span></button>
+                <button type="button" class="favorite-button" data-favorite="expressive" aria-pressed="false" aria-label="Favorite Expressive tailoring" title="Save Expressive tailoring to favorites" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+                <p class="look-description">Texture, a pale trouser, and a personal accessory make tailoring feel lived-in.</p><div class="look-palette" aria-label="Suggested color palette: Tobacco, Pale sage, Ink"><span class="color-swatch" style="--swatch:#79573d" title="Tobacco" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#b0bdb1" title="Pale sage" aria-hidden="true"></span><span class="color-swatch" style="--swatch:#25272a" title="Ink" aria-hidden="true"></span><span>Tobacco / Pale sage / Ink</span></div><p class="style-tags">Bold / Tailored</p><a class="preview-link" href="assets/editorial/expressive-layers.jpg" data-view="expressive" aria-label="View full Expressive tailoring outfit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>View full look</a>
+                <details class="look-details"><summary>Styling notes <span class="sr-only">for Expressive tailoring</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="details-body"><dl class="outfit-facts"><div><dt>Wear it for</dt><dd>Creative meetings, a gallery opening, or a smart daytime outing.</dd></div><div><dt>Balance the shape</dt><dd>Wide trousers and a roomy blazer work best when the shirt layer stays tidy.</dd></div><div><dt>Easy swap</dt><dd>Start with a plain shirt and one accessory if you want a quieter version.</dd></div></dl><p class="detail-label">Key pieces</p><ul><li>Textured brown blazer</li><li>Patterned tie and long scarf</li><li>Pale wide-leg trousers</li></ul><p><strong>Colors</strong><br>Tobacco brown, pale sage, and ink</p><p><strong>Try it your way</strong><br>Let the blazer and trousers set the silhouette. Try just the tie or scarf first, then add the other if it feels right.</p></div></details>
+            </article>
+            <aside class="style-note">
+                <h3>Your style.<br>Your rules.</h3>
+                <p>Use these looks as a starting point. Mix things up, add your favorite pieces, and make them your own.</p>
+                <a class="text-link" href="tel:+254713486533">Need a little guidance? <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+            </aside>
+        </div>
+    </section>
 
-<div class="gallery">
-    <button type="button" class="gallery-item" onclick="selectOutfit('casual')">
-        <img src="casual.jpg" alt="Casual outfit">
-    </button>
-    <button type="button" class="gallery-item" onclick="selectOutfit('classy')">
-        <img src="classy.jpg" alt="Classy outfit">
-    </button>
-    <button type="button" class="gallery-item" onclick="selectOutfit('jean')">
-        <img src="jean.jpg" alt="Jeans outfit">
-    </button>
-    <button type="button" class="gallery-item" onclick="selectOutfit('office')">
-        <img src="office.jpg" alt="Office outfit">
-    </button>
-    <button type="button" class="gallery-item" onclick="selectOutfit('official')">
-        <img src="official.jpg" alt="Official outfit">
-    </button>
-    <button type="button" class="gallery-item" onclick="selectOutfit('white')">
-        <img src="white.png" alt="White outfit">
-    </button>
-    <button type="button" class="gallery-item" onclick="selectOutfit('date')">
-        <img src="date.png" alt="Date outfit">
-    </button>
-</div>
-<p>Do not forget to leave your feedback below about the available fits and feel free to give out your opinion it its for you, on what we can improve, and also an outfit of your own which you would like to share with others.</p>
 
-<h3>Feedback</h3>
+    <section id="style-journal" class="style-journal" aria-labelledby="journal-title">
+        <div class="section-heading"><h2 id="journal-title">The style journal</h2><p>Ideas you can wear, not just scroll past.</p></div>
+        <div class="journal-grid">
+            <article class="journal-story journal-lead"><figure><img src="assets/editorial/street-style-duo.jpg" alt="Two people mixing black silhouettes, a purple printed shirt, and colorful accessories on a city walk" width="1400" height="1120" loading="lazy" decoding="async"><figcaption>Photography by <a href="https://unsplash.com/photos/two-people-walking-in-the-street-CCRw_jYeUoY" target="_blank" rel="noopener">Karla Martinez</a></figcaption></figure><h3>Personal style starts with a point of view.</h3><p>You do not need a completely new wardrobe. Start with the shape, color, or detail you are drawn to, then let everything else support it.</p><details class="journal-details"><summary>Read the styling story <span class="sr-only">about personal style</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div><p>A simple outfit can feel expressive when one decision is clear. A wide trouser changes the silhouette. An open patterned shirt gives a plain base some movement. A bright sock or scarf adds a small interruption.</p><h4>Try a contrast, not a costume</h4><p>Pair one crisp piece with something softer: a blazer over a tee, a tailored trouser with sneakers, or a clean shirt with relaxed denim. Keep one element familiar so the new combination still feels like you.</p><p>Before leaving, ask which detail you want someone to notice first. Give that detail room.</p><a class="text-link" href="#gallery" data-gallery-style="bold">Explore bold looks <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div></details></article>
+            <article class="journal-story"><figure><img src="assets/editorial/suede-and-denim.jpg" alt="Close-up of a textured brown jacket, ribbed white top, leather belt, and dark denim" width="1200" height="1800" loading="lazy" decoding="async"><figcaption>Photography by <a href="https://unsplash.com/photos/man-wearing-a-suede-jacket-white-shirt-and-jeans-Gc5Rpu9186o" target="_blank" rel="noopener">Long Chung</a></figcaption></figure><h3>Let texture do the talking.</h3><p>Neutral colors need not feel flat. Ribbing, a soft jacket, a worn-in belt, and denim can give a quiet palette plenty of character.</p><details class="journal-details"><summary>Read the styling story <span class="sr-only">about texture</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div><h4>Work in a close color family</h4><p>Try tobacco, cream, and dark denim. The colors sit comfortably together, so the differences in surface become more noticeable.</p><h4>Give the eye a place to rest</h4><p>Use a plain base beneath a textured layer. A ribbed tee or simple shirt leaves room for the jacket, while a restrained belt ties the colors together.</p><p>You can use the same idea with pieces you already own: a knit with smooth trousers, or a denim jacket over a plain dress.</p><a class="text-link" href="#gallery" data-gallery-style="minimal">Explore minimal looks <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div></details></article>
+            <article class="journal-story"><figure><img src="assets/editorial/city-streetwear.jpg" alt="Relaxed black T-shirt and denim shorts styled with tall socks, sunglasses, and chunky white sneakers" width="1000" height="1499" loading="lazy" decoding="async"><figcaption>Photography by <a href="https://unsplash.com/photos/a-woman-walks-towards-the-camera-outdoors-V7oBvq1qsxw" target="_blank" rel="noopener">Max Omen</a></figcaption></figure><h3>Make casual feel considered.</h3><p>A tee and denim are just the starting point. Proportion, footwear, and a useful accessory make the combination feel intentional.</p><details class="journal-details"><summary>Read the styling story <span class="sr-only">about casual outfits</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div><h4>Choose your silhouette</h4><p>Try a roomy top with a shorter hem below, or straight-leg denim with a closer-fitting tee. There is no fixed rule: look for a balance you enjoy wearing.</p><h4>Finish from the ground up</h4><p>A substantial sneaker changes the feel of a simple outfit. A flat, boot, or loafer can take the same base in a different direction.</p><p>Keep comfort part of the decision. The best finishing detail is one that works for the way you will move through the day.</p><a class="text-link" href="#gallery" data-gallery-style="relaxed">Explore relaxed looks <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div></details></article>
+        </div>
+    </section>
+    <section id="style-guide" class="styling-guide" aria-labelledby="guide-title"><div class="guide-intro"><h2 id="guide-title">A good outfit<br><em>has a little balance.</em></h2><p>Use these as starting points, then bend the rules. Personal style comes from noticing what feels right to you.</p><a class="text-link" href="#gallery">Put an idea into practice <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div><div class="guide-accordions">
+        <details open><summary>Find a silhouette you enjoy <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Notice where a garment adds volume and where it follows your shape. Try a loose shirt with a cleaner trouser line, or a simple top with a wider leg. A tuck, rolled sleeve, or different hem length can change the whole balance.</p></details>
+        <details><summary>Build a color conversation <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Start with two colors you like together. A quieter base can give one stronger shade more room; a close family of tones lets texture stand out instead. Repeat a color in a small accessory if you want the outfit to feel connected.</p></details>
+        <details><summary>Dress for the day you are having <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Think about the setting, the weather, and how much you will walk or sit. Choose the practical pieces first, then add personality through a layer, shoe, or accessory. A look should work with your day.</p></details>
+        <details><summary>Finish with one personal detail <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>A scarf, a ring, an unexpected sock, or a favorite bag can make familiar clothes feel like yours. Try adding one detail, then step back and decide whether the outfit needs anything else.</p></details>
+    </div></section>
 
-<form action="process.php" method="POST" onsubmit="return validateForm()">
-    <input type="text" id="name" name="name" placeholder="Your Name"><br><br>
-    
-    <input type="text" id="outfit" name="outfit" placeholder="Selected Outfit" readonly><br><br>
-    
-    <textarea name="comment" id="comment" placeholder="Your Comment"></textarea><br><br>
-    
-    <button type="submit">Submit</button>
-</form>
-
-<script src="script.js"></script>
+    <section id="feedback" class="feedback-section" aria-labelledby="feedback-title">
+        <div class="feedback-intro">
+            <h2 id="feedback-title">What’s your<br><em>take on the look?</em></h2>
+            <p>Love a combination? Have an idea to make it better? Keep your thoughts here, or describe an outfit of your own.</p>
+            <div class="selected-preview" id="selected-preview" hidden>
+                <img id="selected-image" src="casual.jpg" alt="" width="104" height="140">
+                <div><span class="look-category">Your selected look</span><h3 id="selected-title"></h3><a id="full-image" class="text-link" target="_blank" rel="noopener">View full image <span class="sr-only">(opens in a new tab)</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+            </div>
+            <p id="feedback-help" class="privacy-note">Just for you: feedback is saved in this browser only. It isn’t sent to the site owner.</p>
+        </div>
+        <form id="feedback-form" aria-describedby="feedback-help">
+            <div class="form-heading"><h3>Your feedback</h3><span>All fields required</span></div>
+            <div class="form-row">
+                <div><label for="name">Your name</label><input type="text" id="name" name="name" autocomplete="name" maxlength="100" placeholder="Your name" required></div>
+                <div><label for="outfit">Selected outfit</label><select id="outfit" name="outfit" required>
+                    <option value="">Choose a look</option><option value="casual">Casual layers</option><option value="classy">A touch of class</option><option value="jean">Denim days</option><option value="office">Office hours</option><option value="official">Sharp &amp; simple</option><option value="white">Back to basics</option><option value="date">Date night</option>
+<option value="city">City ease</option>
+<option value="expressive">Expressive tailoring</option>
+                </select></div>
+            </div>
+            <label for="comment">Your thoughts</label>
+            <textarea name="comment" id="comment" rows="5" maxlength="2000" placeholder="Tell us what works, what you would change, or how you would style it…" required aria-describedby="comment-count"></textarea>
+            <div id="comment-count" class="character-count">0 / 2,000 characters</div>
+            <div class="form-actions"><button class="primary-button" type="submit" id="save-feedback" disabled>Save my feedback <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></button><button class="clear-button" type="button" id="clear-feedback" disabled>Clear saved feedback</button></div>
+            <p id="feedback-status" class="feedback-status" role="status" aria-live="polite"></p>
+        </form>
+        <noscript><p>Enable JavaScript to select gallery images and save feedback on this device.</p></noscript>
+    </section>
+</main>
+<footer class="site-footer" aria-labelledby="footer-title">
+    <div class="wrap">
+        <div class="footer-invitation"><h2 id="footer-title">A little inspiration.<br><em>A lot of you.</em></h2><a class="footer-contact" href="tel:+254713486533">Find your next look with us <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+        <div class="footer-grid">
+            <div class="footer-brand"><a class="wordmark" href="#main" aria-label="Fashion, back to top">FASHION<span aria-hidden="true">.</span></a><p>Everyday looks, dressed-up moments, and the freedom to make them your own.</p><span class="footer-local">Your style. Your rules.</span></div>
+            <nav class="footer-nav" aria-label="Explore outfits"><h3>Explore</h3><a href="#gallery" data-gallery-filter="all">All looks</a><a href="#gallery" data-gallery-filter="everyday">Everyday</a><a href="#gallery" data-gallery-filter="work">For work</a><a href="#gallery" data-gallery-filter="occasion">Going out</a></nav>
+            <nav class="footer-nav" aria-label="Your collection"><h3>Make it yours</h3><a href="#gallery" data-gallery-filter="favorites">Your favorites</a><a href="#style-journal">Style journal</a><a href="#style-guide">Styling guide</a><a href="#feedback">Your feedback</a><a href="#privacy">Privacy &amp; saved data</a></nav>
+            <div class="footer-help"><h3>Let's talk style</h3><p>Need a little help choosing a look?</p><a class="footer-phone" href="tel:+254713486533">+254 713 486 533</a><p>Call us for outfit inspiration.</p></div>
+        </div>
+        <details class="footer-privacy" id="privacy"><summary>How your data is saved</summary><p>Your favorites and feedback are stored only in this browser. Feedback is not sent to the site owner. Clearing your browser's site data removes saved entries; clearing feedback in the form leaves favorites untouched. Avoid saving personal details on shared devices.</p></details>
+        <details class="footer-privacy" id="photo-credits"><summary>Photography credits</summary><p>Editorial photography from Unsplash. Explore the original photographs and their creators below.</p><ul><li><a href="https://unsplash.com/photos/man-in-stylish-outfit-walks-down-street-X-Vp-swqmKQ" target="_blank" rel="noopener">Dion Martins - Expressive tailoring</a></li><li><a href="https://unsplash.com/photos/two-people-walking-in-the-street-CCRw_jYeUoY" target="_blank" rel="noopener">Karla Martinez - Street-style duo</a></li><li><a href="https://unsplash.com/photos/man-wearing-a-suede-jacket-white-shirt-and-jeans-Gc5Rpu9186o" target="_blank" rel="noopener">Long Chung - Texture study</a></li><li><a href="https://unsplash.com/photos/a-woman-walks-towards-the-camera-outdoors-V7oBvq1qsxw" target="_blank" rel="noopener">Max Omen - City ease</a></li></ul></details>
+        <div class="footer-bottom"><p>&copy; 2026 Fashion. Inspiration for the way you dress.</p><a href="#main">Back to top <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a></div>
+    </div>
+</footer>
+<dialog class="image-viewer" id="image-viewer" aria-labelledby="viewer-title" aria-describedby="viewer-help">
+    <div class="viewer-heading"><div><h2 id="viewer-title">Outfit preview</h2><p id="viewer-counter" aria-live="polite"></p></div><button type="button" id="close-viewer" class="viewer-close" autofocus aria-label="Close image viewer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="viewer-stage" id="viewer-stage" tabindex="0" role="region" aria-label="Outfit image; scroll to explore when zoomed"><img id="viewer-image" src="casual.jpg" alt="" width="600" height="800"></div>
+    <div class="viewer-controls"><button type="button" id="previous-look">Previous look</button><button type="button" id="zoom-image" aria-pressed="false">Zoom image</button><button type="button" id="next-look">Next look</button></div>
+    <p id="viewer-help">Use the left and right arrow keys to browse. Zoom to inspect details, then scroll around the image. Press Escape to close.</p>
+    <a id="viewer-original" href="casual.jpg" target="_blank" rel="noopener">Open original image <span class="sr-only">(new tab)</span></a>
+</dialog>
 </body>
 </html>

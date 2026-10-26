@@ -1,0 +1,35 @@
+{
+  "source": "Unsplash",
+  "license": "https://unsplash.com/license",
+  "reviewedOn": "2026-10-26",
+  "photos": [
+    {
+      "file": "expressive-layers.jpg",
+      "photographer": "Dion Martins",
+      "page": "https://unsplash.com/photos/man-in-stylish-outfit-walks-down-street-X-Vp-swqmKQ",
+      "download": "https://images.unsplash.com/photo-1764593008673-af6056758b4a?auto=format&fit=crop&fm=jpg&q=82&w=1000",
+      "usage": "Featured hero and Expressive tailoring gallery look"
+    },
+    {
+      "file": "street-style-duo.jpg",
+      "photographer": "Karla Martinez",
+      "page": "https://unsplash.com/photos/two-people-walking-in-the-street-CCRw_jYeUoY",
+      "download": "https://images.unsplash.com/photo-1526692202263-843e30c353e8?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+      "usage": "Personal-style journal story"
+    },
+    {
+      "file": "suede-and-denim.jpg",
+      "photographer": "Long Chung",
+      "page": "https://unsplash.com/photos/man-wearing-a-suede-jacket-white-shirt-and-jeans-Gc5Rpu9186o",
+      "download": "https://images.unsplash.com/photo-1776843370483-4f793bc14739?auto=format&fit=crop&fm=jpg&q=82&w=1200",
+      "usage": "Texture journal story"
+    },
+    {
+      "file": "city-streetwear.jpg",
+      "photographer": "Max Omen",
+      "page": "https://unsplash.com/photos/a-woman-walks-towards-the-camera-outdoors-V7oBvq1qsxw",
+      "download": "https://images.unsplash.com/photo-1745142640164-74774600af1d?auto=format&fit=crop&fm=jpg&q=82&w=1000",
+      "usage": "City ease gallery look and casual-style journal story"
+    }
+  ]
+}
