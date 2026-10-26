@@ -41,7 +41,9 @@ The supplied inclusive design-flow reference informs the three-column desktop, t
 
 The gallery includes nine looks, suggested color palettes, and styling notes covering occasions, silhouette balance, and simple swaps. A photo-led intro, three expandable journal stories, and a practical styling guide provide more ways to explore personal style. Journal links filter the gallery; the two added looks participate in selection, favorites, the viewer, and feedback.
 
-Four sourced photographs are bundled locally and credited in the page footer and `CREDITS.md`. Source and download URLs are recorded in `assets/editorial/sources.json`. The page requires no image API or remote font service.
+Six sourced photographs are bundled locally and credited in the page footer and `CREDITS.md`. Source and download URLs are recorded in `assets/editorial/sources.json`. The page requires no image API or remote font service.
+
+Denim days and Back to basics now lead with street-style photographs as a two-look visual trial. Their original collages remain under Styling notes as outfit breakdowns, with full-size links. The photos interpret the combinations rather than depict the exact garments; palettes and notes preserve the original outfit choices. Selection, comparison, and the image viewer use the new lead photographs.
 
 ## Search and compare
 

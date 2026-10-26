@@ -264,6 +264,14 @@ form > label { margin-top: 22px; }
 .hero-visual figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; margin-top: 12px; color: var(--muted); font-size: 12px; }
 .hero-visual figcaption a { text-decoration-color: var(--border); }
 .look-description { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.55; min-height: 3.1em; }
+.look-photo-credit { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.look-photo-credit a { text-underline-offset: 3px; }
+.outfit-breakdown { margin: 0 0 24px; }
+.outfit-breakdown > a { display: block; background: var(--background); }
+.outfit-breakdown img { display: block; width: 100%; height: auto; max-height: 360px; object-fit: contain; }
+.outfit-breakdown figcaption { padding-top: 12px; font-size: 13px; line-height: 1.6; }
+.outfit-breakdown figcaption strong, .outfit-breakdown figcaption span { display: block; }
+.outfit-breakdown figcaption > a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); }
 .look-palette { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
 .color-swatch { display: block; width: 15px; height: 15px; flex: 0 0 15px; border: 1px solid #95818b; border-radius: 50%; background: var(--swatch); }
 .look-palette > span:last-child { flex: 1 1 130px; margin-left: 3px; color: var(--muted); font-size: 12px; }

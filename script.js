@@ -382,7 +382,13 @@ function renderComparison() {
         column.append(image, title, look.querySelector(".look-palette").cloneNode(true));
         const piecesTitle = document.createElement("p");
         piecesTitle.className = "detail-label";
-        piecesTitle.textContent = "Key pieces";
+        piecesTitle.textContent = look.classList.contains("has-breakdown") ? "Original outfit pieces" : "Key pieces";
+        if (look.classList.contains("has-breakdown")) {
+            const context = document.createElement("p");
+            context.className = "look-photo-credit";
+            context.textContent = "Photographic interpretation. Palette and notes refer to the original outfit breakdown in Styling notes.";
+            column.append(context);
+        }
         column.append(piecesTitle, look.querySelector(".details-body ul").cloneNode(true), look.querySelector(".outfit-facts").cloneNode(true));
         const actions = document.createElement("div");
         actions.className = "comparison-actions";

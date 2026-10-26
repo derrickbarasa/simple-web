@@ -57,6 +57,10 @@ The generic design detector flags the warm ivory background as a common palette.
 
 ## Editorial content expansion
 
+Photography trial: Denim days and Back to basics now use Pexels street-style images as their lead visuals. Preserve both original collage files inside their native Styling notes disclosures, labelled Your original outfit breakdown, with full-size links. Credits and comparison context identify the photos as interpretations; original palettes and styling notes remain intact. The other five original cards are unchanged pending review of this two-look direction. Both photographs are 1000 × 1500 and use the existing contain behavior, without additional cropping.
+
+Trial verification: reviewed both downloaded images against the original collages, inspected the desktop comparison, opened the original breakdown disclosure, and checked that feedback selection uses the new lead photo and toggles off. No horizontal overflow at the tested 433px CSS phone viewport. Local references, unique IDs, and JavaScript syntax checks passed. The design detector reported only the previously documented intentional cream palette. Desktop preview: `.impeccable/review/photography-trial-desktop.png`.
+
 The collection now has nine selectable looks: the original seven collages plus City ease and Expressive tailoring. A photographic split intro features a real collection look. Four sourced photographs are stored locally with provenance in assets/editorial/sources.json, linked in CREDITS.md, and credited in the page.
 
 Each look has a concise description, suggested color swatches with readable color names, neutral style tags, and expandable occasion/proportion/swap guidance. These are editorial interpretations, not claims about brands, prices, or fiber composition. Gallery images use contain so garments remain visible.

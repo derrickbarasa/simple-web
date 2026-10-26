@@ -1,6 +1,5 @@
 {
-  "source": "Unsplash",
-  "license": "https://unsplash.com/license",
+  "source": "Unsplash and Pexels",
   "reviewedOn": "2026-10-26",
   "photos": [
     {
@@ -8,28 +7,52 @@
       "photographer": "Dion Martins",
       "page": "https://unsplash.com/photos/man-in-stylish-outfit-walks-down-street-X-Vp-swqmKQ",
       "download": "https://images.unsplash.com/photo-1764593008673-af6056758b4a?auto=format&fit=crop&fm=jpg&q=82&w=1000",
-      "usage": "Featured hero and Expressive tailoring gallery look"
+      "usage": "Featured hero and Expressive tailoring gallery look",
+      "license": "https://unsplash.com/license"
     },
     {
       "file": "street-style-duo.jpg",
       "photographer": "Karla Martinez",
       "page": "https://unsplash.com/photos/two-people-walking-in-the-street-CCRw_jYeUoY",
       "download": "https://images.unsplash.com/photo-1526692202263-843e30c353e8?auto=format&fit=crop&fm=jpg&q=82&w=1400",
-      "usage": "Personal-style journal story"
+      "usage": "Personal-style journal story",
+      "license": "https://unsplash.com/license"
     },
     {
       "file": "suede-and-denim.jpg",
       "photographer": "Long Chung",
       "page": "https://unsplash.com/photos/man-wearing-a-suede-jacket-white-shirt-and-jeans-Gc5Rpu9186o",
       "download": "https://images.unsplash.com/photo-1776843370483-4f793bc14739?auto=format&fit=crop&fm=jpg&q=82&w=1200",
-      "usage": "Texture journal story"
+      "usage": "Texture journal story",
+      "license": "https://unsplash.com/license"
     },
     {
       "file": "city-streetwear.jpg",
       "photographer": "Max Omen",
       "page": "https://unsplash.com/photos/a-woman-walks-towards-the-camera-outdoors-V7oBvq1qsxw",
       "download": "https://images.unsplash.com/photo-1745142640164-74774600af1d?auto=format&fit=crop&fm=jpg&q=82&w=1000",
-      "usage": "City ease gallery look and casual-style journal story"
+      "usage": "City ease gallery look and casual-style journal story",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "denim-days.jpg",
+      "photographer": "Kristina Chuprina",
+      "page": "https://www.pexels.com/photo/female-model-wearing-jeans-and-plastic-black-jacket-posing-in-street-10219553/",
+      "download": "https://images.pexels.com/photos/10219553/pexels-photo-10219553.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "license": "https://www.pexels.com/license/",
+      "usage": "Denim days photographic interpretation; original collage retained in styling notes"
+    },
+    {
+      "file": "back-to-basics.jpg",
+      "photographer": "Hamit Ferhat",
+      "page": "https://www.pexels.com/photo/a-woman-in-white-long-sleeves-and-black-pants-standing-on-the-roadside-while-looking-at-the-camera-14620818/",
+      "download": "https://images.pexels.com/photos/14620818/pexels-photo-14620818.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "license": "https://www.pexels.com/license/",
+      "usage": "Back to basics photographic interpretation; original collage retained in styling notes"
     }
+  ],
+  "licenses": [
+    "https://unsplash.com/license",
+    "https://www.pexels.com/license/"
   ]
 }
