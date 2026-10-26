@@ -196,8 +196,7 @@ for (const id of ["name", "comment"]) {
 }
 comment.addEventListener("input", updateCount);
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
+function readFeedback() {
     showStatus("");
     for (const id of ["name", "comment"]) {
         const field = document.getElementById(id);
@@ -205,13 +204,18 @@ form.addEventListener("submit", (event) => {
         field.setCustomValidity(field.value ? "" : "Please enter your " + id + ".");
     }
     updateCount();
-    if (!form.reportValidity()) return;
+    if (!form.reportValidity()) return null;
 
-    const feedback = {
+    return {
         name: document.getElementById("name").value,
         outfit: outfit.value,
         comment: document.getElementById("comment").value,
     };
+}
+
+document.getElementById("save-feedback").addEventListener("click", () => {
+    const feedback = readFeedback();
+    if (!feedback) return;
 
     try {
         localStorage.setItem(storageKey, JSON.stringify(feedback));

@@ -49,6 +49,46 @@
       "download": "https://images.pexels.com/photos/14620818/pexels-photo-14620818.jpeg?auto=compress&cs=tinysrgb&w=1000",
       "license": "https://www.pexels.com/license/",
       "usage": "Back to basics photographic interpretation; original collage retained in styling notes"
+    },
+    {
+      "file": "casual-layers.jpg",
+      "photographer": "Ba Tik",
+      "page": "https://www.pexels.com/photo/photo-of-man-wearing-beige-sweater-3754247/",
+      "download": "https://images.pexels.com/photos/3754247/pexels-photo-3754247.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "license": "https://www.pexels.com/license/",
+      "usage": "Casual layers photographic interpretation; original collage retained in styling notes"
+    },
+    {
+      "file": "touch-of-class.jpg",
+      "photographer": "Hugo Camacho",
+      "page": "https://www.pexels.com/photo/woman-wearing-white-top-and-red-skirt-13422873/",
+      "download": "https://images.pexels.com/photos/13422873/pexels-photo-13422873.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "license": "https://www.pexels.com/license/",
+      "usage": "A touch of class photographic interpretation; original collage retained in styling notes"
+    },
+    {
+      "file": "office-hours.jpg",
+      "photographer": "Pro5 vn",
+      "page": "https://www.pexels.com/photo/elegant-woman-in-white-blouse-and-black-pants-25950425/",
+      "download": "https://images.pexels.com/photos/25950425/pexels-photo-25950425.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "license": "https://www.pexels.com/license/",
+      "usage": "Office hours photographic interpretation; original collage retained in styling notes"
+    },
+    {
+      "file": "sharp-simple.jpg",
+      "photographer": "Siarhei Nester",
+      "page": "https://www.pexels.com/photo/a-man-wearing-maroon-sweater-15059144/",
+      "download": "https://images.pexels.com/photos/15059144/pexels-photo-15059144.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "license": "https://www.pexels.com/license/",
+      "usage": "Sharp & simple photographic interpretation; original collage retained in styling notes"
+    },
+    {
+      "file": "date-night.jpg",
+      "photographer": "El gringo photo",
+      "page": "https://www.pexels.com/photo/woman-posing-in-blue-dress-14472263/",
+      "download": "https://images.pexels.com/photos/14472263/pexels-photo-14472263.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "license": "https://www.pexels.com/license/",
+      "usage": "Date night photographic interpretation; original collage retained in styling notes"
     }
   ],
   "licenses": [

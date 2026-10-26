@@ -67,3 +67,10 @@ Sources:
 - https://unsplash.com/photos/man-wearing-a-suede-jacket-white-shirt-and-jeans-Gc5Rpu9186o
 - https://unsplash.com/photos/a-woman-walks-towards-the-camera-outdoors-V7oBvq1qsxw
 - https://unsplash.com/license
+## Completing the collection and feedback delivery
+
+The remaining five original looks now lead with locally downloaded Pexels photography. Their sources and licenses are recorded individually in `assets/editorial/sources.json` and `CREDITS.md`. All seven original collages remain as breakdowns, with notes and palettes attached to those original combinations. This avoids implying that an inspiration photograph shows the exact garments.
+
+Style me uses explicit collection metadata: occasion, style tags, and original palette families. Each selected preference contributes one match; exact results take precedence, otherwise the page offers clearly labelled partial matches. The page explains its suggestions through matching criteria, with no invented personal analysis or remote AI service.
+
+FormSubmit was selected for the owner's requested email service because it supports [static HTML forms and field configuration](https://formsubmit.co/documentation) and [cross-origin JSON submissions](https://formsubmit.co/ajax-documentation). Its [activation help](https://formsubmit.co/help) explains the recipient confirmation requirement. The integration retains native POST fallback and provider anti-spam defaults. The owner supplied the receiving address explicitly. Setup and browser requests timed out during verification, so activation and inbox receipt remain unconfirmed; no claim of successful delivery is made.

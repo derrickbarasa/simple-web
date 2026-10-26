@@ -1,18 +1,20 @@
 # simple-web
 
-A fashion inspiration gallery using HTML, CSS, and vanilla JavaScript. No installation, build step, backend, or database is required.
+A fashion inspiration gallery using HTML, CSS, and vanilla JavaScript. No installation, build step, local backend, or database is required. Email delivery uses the hosted FormSubmit service.
 
 ## Run locally
 
 Open `fashion.html` directly in your browser. You can also use an existing static preview such as VS Code Live Server.
 
-## Feedback storage
+## Feedback delivery and private notes
 
-Feedback is saved only in the visitor's browser using `localStorage`, under `fashion-gallery-feedback`. Saving replaces the previous entry, and the saved fields are restored when reopening the page in the same browser and origin. Clearing browser data removes the saved feedback. Avoid saving personal details on shared devices.
+Send my feedback posts the visitor's name, chosen look, and message to `https://formsubmit.co/ajax/barasaderrick499@gmail.com`. FormSubmit forwards submissions to the email address supplied by the site owner. This address is public in the static HTML and JavaScript. Delivery requires an internet connection and the recipient's one-time FormSubmit activation. Check the recipient's inbox/spam folder for an activation email after the first submission, then confirm it. A submitted response confirms service acceptance, not arrival in the inbox. The UI keeps the text, prevents concurrent sends, and recovers after a 20-second timeout without automatically retrying. No attachments, analytics, or style preferences are sent.
 
-This is a local prototype: feedback is not sent to the site owner or shared between visitors. Receiving real submissions would require connecting a hosted form service or remote backend; neither requires installing PHP locally.
+Save on this device stores one private entry using `localStorage`, under `fashion-gallery-feedback`. Saving replaces the previous local entry; reopening in the same browser and origin restores it. This action does not submit to FormSubmit. Clearing saved feedback deletes only this local copy, not previously sent emails. Favorites use a separate key. Avoid saving personal details on shared devices.
 
-Some browsers restrict storage when opening local files or using private browsing. If saving fails, the page keeps the entered text and displays an error. JavaScript is required for gallery selection and saving feedback.
+Some browsers restrict storage when opening local files or using private browsing. If saving fails, the page keeps the text and displays an error. JavaScript is required for gallery selection and private saving. Without JavaScript the send form uses FormSubmit's standard POST page, including its confirmation/challenge flow. Keep the provider's anti-spam defaults enabled. Use an HTTP static preview or the deployed site to test delivery; some providers reject `file://` origins.
+
+Provider references: [AJAX integration](https://formsubmit.co/ajax-documentation), [activation help](https://formsubmit.co/help), and [form configuration](https://formsubmit.co/documentation).
 
 ## Gallery features
 
@@ -41,9 +43,17 @@ The supplied inclusive design-flow reference informs the three-column desktop, t
 
 The gallery includes nine looks, suggested color palettes, and styling notes covering occasions, silhouette balance, and simple swaps. A photo-led intro, three expandable journal stories, and a practical styling guide provide more ways to explore personal style. Journal links filter the gallery; the two added looks participate in selection, favorites, the viewer, and feedback.
 
-Six sourced photographs are bundled locally and credited in the page footer and `CREDITS.md`. Source and download URLs are recorded in `assets/editorial/sources.json`. The page requires no image API or remote font service.
+Eleven sourced photographs are bundled locally and credited in the page footer and `CREDITS.md`. Source and download URLs are recorded in `assets/editorial/sources.json`. The page requires no image API or remote font service.
 
-Denim days and Back to basics now lead with street-style photographs as a two-look visual trial. Their original collages remain under Styling notes as outfit breakdowns, with full-size links. The photos interpret the combinations rather than depict the exact garments; palettes and notes preserve the original outfit choices. Selection, comparison, and the image viewer use the new lead photographs.
+All nine looks now lead with photography. The seven original collages remain under Styling notes as outfit breakdowns, with full-size links. The photos interpret the combinations rather than depict the exact garments; palettes and notes preserve the original outfit choices. Selection, comparison, and the image viewer use the lead photographs. Sharp & simple uses a closer view to show the sweater-and-collar layering.
+
+## Style me
+
+Choose an occasion, style, and color family to see up to three collection suggestions. Exact matches appear first; when none match every choice, the page clearly labels the closest alternatives and lists their matching preferences. Colors refer to the original outfit palettes. Start over clears preferences and results. Explore this look clears gallery filters and takes you to that card. The feature uses the local collection, requires no API key, and does not store or send preferences.
+
+## Checks
+
+With an existing Node.js installation, run `node --test tests/behavior.test.cjs` for recommendation and delivery behavior checks. In environments that prevent child processes, use `node --test --test-isolation=none tests/behavior.test.cjs`. The tests mock network requests and do not send emails. No Node.js installation is needed to use the website.
 
 ## Search and compare
 
