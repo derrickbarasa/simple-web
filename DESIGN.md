@@ -1,4 +1,4 @@
-﻿# Fashion lookbook design
+﻿# Couture lookbook design
 
 ## Purpose and content
 

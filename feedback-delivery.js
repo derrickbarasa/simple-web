@@ -31,7 +31,7 @@ function initFeedbackDelivery({ form, outfit, readFeedback, showStatus }) {
         if (document.getElementById("website").value) return;
         const lookName = outfit.options[outfit.selectedIndex].textContent;
         const payload = { name: feedback.name, outfit: lookName, outfit_id: feedback.outfit, message: feedback.comment,
-            _subject: "New feedback from the Fashion lookbook", _template: "table", _honey: "" };
+            _subject: "New feedback from the Couture lookbook", _template: "table", _honey: "" };
         sending = true;
         sendButton.disabled = true;
         sendButton.setAttribute("aria-busy", "true");
