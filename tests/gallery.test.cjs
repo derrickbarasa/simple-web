@@ -95,6 +95,21 @@ test("selecting a look syncs the dropdown and selecting it again unselects", () 
     assert.equal(page.document.getElementById("selected-preview").hidden, true);
 });
 
+test("comparison removal returns focus to a visible card control when notes are closed", () => {
+    const page = loadPage();
+    const notes = page.document.querySelector('.look-details');
+    notes.open = true;
+    page.click('.compare-button');
+    notes.open = false;
+    page.click('.comparison-actions button');
+    assert.equal(page.document.activeElement, notes.querySelector('summary'));
+
+    notes.open = true;
+    page.click('.compare-button');
+    page.click('#clear-comparison');
+    assert.equal(page.document.activeElement, notes.querySelector('.compare-button'));
+});
+
 test("private save stores one entry and clear removes it", () => {
     const page = loadPage();
     const { document, window } = page;

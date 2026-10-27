@@ -2,6 +2,14 @@
 
 ## Purpose and content
 
+Card simplification: closed cards lead with photography, title, occasion, and the existing short description. Named palettes, style tags, full-image viewing, comparison controls, and photo credits live inside the native Styling notes disclosure with the original breakdowns and guidance. Search, recommendations, and comparison continue to read the same card content. Favorites and feedback selection remain directly available. Removing or clearing comparison returns focus to the card's summary when its notes are closed, or its compare button when open.
+
+Card-pass verification: 17 tests passed, including focus recovery after closing notes. Desktop and phone browser checks exercised disclosure, image viewing, comparison, and focus; no horizontal overflow at 1422px and 395px CSS widths. Phone actions retained 44px height. The detector reported only the previously documented intentional cream palette.
+
+Polish refinement: collection filters use a responsive grid, with the style selector and result count sharing a row on phones. Search uses the collection width. Mobile cards place image inspection and comparison on separate lines. Comparison stacks below 600px and feedback fields below 480px. Shared control feedback respects reduced motion; disabled action colors stay stable on hover. Single-column gallery titles retain a readable 20px size.
+
+Polish verification: all 16 existing tests passed and the design detector returned no findings for the changed stylesheet. Browser inspection confirmed filtering and no page overflow at 395px and 1422px CSS widths. The phone screenshot was clipped by the connector, so responsive assessment also used rendered geometry.
+
 An inclusive outfit inspiration gallery for browsing looks, exploring styling notes, collecting favorites, finding outfit suggestions, and sharing feedback or saving private notes locally. Discovery uses occasion and aesthetic rather than gender. All seven original image assets and the existing contact number are retained.
 
 The supplied five-page fashion_design_flow_all_genders.pdf informs the visual direction and visitor journey. It is a design specification rather than screenshot authority. The user delegated the font decision after supplying it.

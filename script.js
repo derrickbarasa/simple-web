@@ -365,6 +365,11 @@ const comparisonGrid = document.getElementById("comparison-grid");
 const comparisonStatus = document.getElementById("comparison-status");
 const compareButtons = new Map();
 
+function focusComparisonControl(look) {
+    const notes = look.querySelector('.look-details');
+    (notes.open ? look.querySelector('.compare-button') : notes.querySelector('summary')).focus();
+}
+
 function renderComparison() {
     comparison.hidden = comparedLooks.size === 0;
     compareButtons.forEach((button, id) => {
@@ -416,8 +421,7 @@ function renderComparison() {
             comparedLooks.delete(id);
             renderComparison();
             announceComparison();
-            const cardButton = compareButtons.get(id);
-            if (!look.hidden) cardButton.focus();
+            if (!look.hidden) focusComparisonControl(look);
             else if (comparedLooks.size) comparisonGrid.querySelector("button").focus();
             else searchInput.focus();
         });
@@ -468,7 +472,7 @@ document.getElementById("clear-comparison").addEventListener("click", () => {
     renderComparison();
     announceComparison();
     const firstVisible = looks.find((look) => !look.hidden);
-    if (firstVisible) firstVisible.querySelector(".compare-button").focus();
+    if (firstVisible) focusComparisonControl(firstVisible);
     else searchInput.focus();
 });
 
