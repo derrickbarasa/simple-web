@@ -68,7 +68,7 @@ function initStyleFinder({ looks, showAllLooks }) {
         finderStatus.textContent = "Preferences cleared. Try a new direction.";
     });
     document.getElementById("style-me").hidden = false;
-    document.querySelector(".finder-entry").hidden = false;
+    document.querySelectorAll('a[href="#style-me"]').forEach((link) => { link.hidden = false; });
 }
 
 globalThis.FashionGallery.getStyleRecommendations = getStyleRecommendations;
