@@ -17,16 +17,11 @@ function getStyleRecommendations(items, preferences) {
     if (!finderForm) return;
     const results = document.getElementById("finder-results");
     const finderStatus = document.getElementById("finder-status");
-    const colorFamilies = {
-        casual: ["earth", "blue", "neutral"], classy: ["berry", "neutral"], jean: ["neutral", "blue"],
-        office: ["neutral"], official: ["berry", "neutral"], white: ["neutral"], date: ["blue", "neutral"],
-        city: ["blue", "neutral"], expressive: ["earth", "neutral"],
-    };
     const collection = looks.map((look) => {
         const button = look.querySelector("[data-outfit]");
         look.id = `look-${button.dataset.outfit}`;
         return { id: button.dataset.outfit, title: button.querySelector("strong").textContent,
-            category: look.dataset.category, styles: look.dataset.styles.split(" "), colors: colorFamilies[button.dataset.outfit], look };
+            category: look.dataset.category, styles: look.dataset.styles.split(" "), colors: look.dataset.colors.split(" "), look };
     });
     const labels = { everyday: "Everyday", work: "For work", occasion: "Going out", relaxed: "Relaxed", tailored: "Tailored", minimal: "Minimal", bold: "Bold", neutral: "Neutral palette", berry: "Berry palette", blue: "Blue palette", earth: "Earth tones" };
 
