@@ -1,0 +1,11 @@
+{
+  "name": "simple-web",
+  "private": true,
+  "description": "Static fashion lookbook. Dependencies are for tests only.",
+  "scripts": {
+    "test": "node --test --test-isolation=none tests/*.test.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}

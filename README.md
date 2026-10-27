@@ -57,7 +57,7 @@ Choose an occasion, style, and color family to see up to three collection sugges
 
 ## Checks
 
-With an existing Node.js installation, run `node --test tests/behavior.test.cjs` for recommendation and delivery behavior checks. In environments that prevent child processes, use `node --test --test-isolation=none tests/behavior.test.cjs`. The tests mock network requests and do not send emails. No Node.js installation is needed to use the website.
+Run `npm install` once, then `npm test`. The suite covers recommendation and delivery logic plus gallery behavior (filters, search, favorites, comparison, selection, private save) in jsdom. Network requests are mocked and no emails are sent. If your environment blocks child processes, `npm test` already runs in-process. Node.js and jsdom are for development only; visitors need neither.
 
 ## Search and compare
 
