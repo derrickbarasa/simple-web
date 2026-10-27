@@ -1,3 +1,5 @@
+globalThis.FashionGallery = globalThis.FashionGallery || {};
+
 async function deliverFeedback(endpoint, payload, fetchImpl = fetch, timeoutMs = 20000) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -16,7 +18,7 @@ async function deliverFeedback(endpoint, payload, fetchImpl = fetch, timeoutMs =
     }
 }
 
-(() => {
+function initFeedbackDelivery({ form, outfit, readFeedback, showStatus }) {
     const sendButton = document.getElementById("send-feedback");
     if (!sendButton) return;
     const label = sendButton.querySelector("span");
@@ -47,4 +49,7 @@ async function deliverFeedback(endpoint, payload, fetchImpl = fetch, timeoutMs =
             label.textContent = "Send my feedback";
         }
     });
-})();
+}
+
+globalThis.FashionGallery.deliverFeedback = deliverFeedback;
+globalThis.FashionGallery.initFeedbackDelivery = initFeedbackDelivery;

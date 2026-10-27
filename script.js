@@ -153,11 +153,15 @@ favoriteButtons.forEach((button) => {
     });
 });
 
-document.getElementById("browse-all").addEventListener("click", () => {
+function showAllLooks() {
     clearQuery();
     currentFilter = "all";
     currentStyle = "all";
     renderGallery();
+}
+
+document.getElementById("browse-all").addEventListener("click", () => {
+    showAllLooks();
     document.querySelector('[data-filter="all"]').focus();
 });
 styleFilter.addEventListener("change", () => {
@@ -166,10 +170,7 @@ styleFilter.addEventListener("change", () => {
 });
 for (const id of ["reset-filters", "reset-empty"]) {
     document.getElementById(id).addEventListener("click", () => {
-        clearQuery();
-        currentFilter = "all";
-        currentStyle = "all";
-        renderGallery();
+        showAllLooks();
         document.querySelector('[data-filter="all"]').focus();
     });
 }
@@ -470,3 +471,8 @@ document.getElementById("clear-comparison").addEventListener("click", () => {
     if (firstVisible) firstVisible.querySelector(".compare-button").focus();
     else searchInput.focus();
 });
+
+// Feature scripts load first and receive what they need explicitly.
+const gallery = globalThis.FashionGallery;
+gallery.initStyleFinder({ looks, showAllLooks });
+gallery.initFeedbackDelivery({ form, outfit, readFeedback, showStatus });

@@ -1,3 +1,6 @@
+// Loaded as a classic script so the page still works from file://; shared code lives on one namespace.
+globalThis.FashionGallery = globalThis.FashionGallery || {};
+
 // Every suggestion comes from the existing collection and its original palette.
 function getStyleRecommendations(items, preferences) {
     const requested = Object.entries(preferences).filter(([, value]) => value !== "all");
@@ -12,7 +15,8 @@ function getStyleRecommendations(items, preferences) {
 }
 
 // Bind the short preference form to gallery discovery, without changing favorites.
-(() => {
+// showAllLooks clears search and filters and re-renders; the finder needs nothing else from the gallery.
+function initStyleFinder({ looks, showAllLooks }) {
     const finderForm = document.getElementById("style-me-form");
     if (!finderForm) return;
     const results = document.getElementById("finder-results");
@@ -51,10 +55,7 @@ function getStyleRecommendations(items, preferences) {
             link.textContent = "Explore this look";
             link.setAttribute("aria-label", `Explore ${item.title}`);
             link.addEventListener("click", () => {
-                currentFilter = "all";
-                currentStyle = "all";
-                clearQuery();
-                renderGallery();
+                showAllLooks();
                 item.look.querySelector("[data-outfit]").focus({ preventScroll: true });
             });
             article.append(image, heading, reason, link);
@@ -68,4 +69,7 @@ function getStyleRecommendations(items, preferences) {
     });
     document.getElementById("style-me").hidden = false;
     document.querySelector(".finder-entry").hidden = false;
-})();
+}
+
+globalThis.FashionGallery.getStyleRecommendations = getStyleRecommendations;
+globalThis.FashionGallery.initStyleFinder = initStyleFinder;

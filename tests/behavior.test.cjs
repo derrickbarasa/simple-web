@@ -7,7 +7,7 @@ const context = vm.createContext({ document: { getElementById: () => null }, Abo
 for (const file of ["style-finder.js", "feedback-delivery.js"]) {
     vm.runInContext(fs.readFileSync(path.join(__dirname, "..", file), "utf8"), context);
 }
-const { getStyleRecommendations, deliverFeedback } = context;
+const { getStyleRecommendations, deliverFeedback } = context.FashionGallery;
 const collection = [
     { id: "office", category: "work", styles: ["tailored", "minimal"], colors: ["neutral"] },
     { id: "classy", category: "occasion", styles: ["bold", "tailored"], colors: ["berry", "neutral"] },
