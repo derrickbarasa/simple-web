@@ -1,18 +1,20 @@
 # simple-web
 
-A fashion inspiration gallery using HTML, CSS, and vanilla JavaScript. No installation, build step, local backend, or database is required. Email delivery uses the hosted FormSubmit service.
+A fashion inspiration gallery using HTML, CSS, and vanilla JavaScript. A small Node.js build step applies the settings in `.env`. No local backend or database is required. Email delivery uses the hosted FormSubmit service.
 
 ## Run locally
 
-Open `fashion.html` directly in your browser. You can also use an existing static preview such as VS Code Live Server.
+Use Node.js 22.9 or newer. Edit `.env` (copy `.env.example` to `.env` if missing), then run `npm run build`. Open `dist/fashion.html` in your browser, or preview the `dist` folder with VS Code Live Server. Rebuild after changing settings; `fashion.html` in the project root is now a template.
+
+The settings cover the website name, tagline, meta description, phone number, displayed phone number, feedback email and subject, and copyright year. The wordmark and default feedback subject follow the site name automatically. Blank copyright year uses the build year. Environment variables override `.env`; `.env` overrides `.env.example`. Only these supported public settings are rendered into HTML. `.env` and `dist/` are ignored by Git. Keep secrets out of public website settings.
 
 ## Host on Vercel
 
-Import `derrickbarasa/simple-web` from GitHub, keep Root Directory at `./`, and choose the Other application preset. The checked-in `vercel.json` serves the repository as static files, skips building, and maps `/` to `fashion.html`. No environment variables or local backend are required. Deploy the latest `main` commit. Email delivery still depends on the external FormSubmit service and recipient activation described below.
+Import `derrickbarasa/simple-web` from GitHub, keep Root Directory at `./`, and choose the Other application preset. The checked-in `vercel.json` runs `npm run build`, publishes only `dist/`, and maps `/` to `fashion.html`. Set your public settings in Vercel Project Settings ? Environment Variables, then redeploy. Since `.env` is ignored by Git, deployments use `.env.example` defaults for any settings you do not set in Vercel. Deploy the latest `main` commit. Email delivery still depends on the external FormSubmit service and recipient activation described below.
 
 ## Feedback delivery and private notes
 
-Send my feedback posts the visitor's name, chosen look, and message to `https://formsubmit.co/ajax/barasaderrick499@gmail.com`. FormSubmit forwards submissions to the email address supplied by the site owner. This address is public in the static HTML and JavaScript. Delivery requires an internet connection and the recipient's one-time FormSubmit activation. Check the recipient's inbox/spam folder for an activation email after the first submission, then confirm it. A submitted response confirms service acceptance, not arrival in the inbox. The UI keeps the text, prevents concurrent sends, and recovers after a 20-second timeout without automatically retrying. No attachments, analytics, or style preferences are sent.
+Send my feedback posts the visitor's name, chosen look, and message to the FormSubmit AJAX endpoint for `FEEDBACK_EMAIL`. FormSubmit forwards submissions to the email address supplied by the site owner. This address is public in the static HTML and JavaScript. Delivery requires an internet connection and the recipient's one-time FormSubmit activation. Check the recipient's inbox/spam folder for an activation email after the first submission, then confirm it. A submitted response confirms service acceptance, not arrival in the inbox. The UI keeps the text, prevents concurrent sends, and recovers after a 20-second timeout without automatically retrying. No attachments, analytics, or style preferences are sent.
 
 Save on this device stores one private entry using `localStorage`, under `fashion-gallery-feedback`. Saving replaces the previous local entry; reopening in the same browser and origin restores it. This action does not submit to FormSubmit. Clearing saved feedback deletes only this local copy, not previously sent emails. Favorites use a separate key. Avoid saving personal details on shared devices.
 
@@ -31,7 +33,7 @@ Provider references: [AJAX integration](https://formsubmit.co/ajax-documentation
 - Save and restore a single feedback entry locally, or clear it with the clear button.
 - Keyboard focus indicators, image descriptions, reduced-motion support, and layouts for desktop and mobile.
 
-All images, styles, scripts, and the Playfair Display and Outfit variable fonts are local. The fonts and their SIL Open Font Licenses are in `assets/fonts/`. No font service, package manager, or build tools are required.
+All images, styles, scripts, and the Playfair Display and Outfit variable fonts are local. The fonts and their SIL Open Font Licenses are in `assets/fonts/`. No font service is required; the build uses only Node.js built-ins.
 
 ## Design and image viewer
 
@@ -57,7 +59,7 @@ Choose an occasion, style, and color family to see up to three collection sugges
 
 ## Checks
 
-Run `npm install` once, then `npm test`. The suite covers recommendation and delivery logic plus gallery behavior (filters, search, favorites, comparison, selection, private save) in jsdom. Network requests are mocked and no emails are sent. If your environment blocks child processes, `npm test` already runs in-process. Node.js and jsdom are for development only; visitors need neither.
+Run `npm install` once, then `npm test`. The suite covers recommendation and delivery logic plus gallery behavior (filters, search, favorites, comparison, selection, private save) in jsdom. Network requests are mocked and no emails are sent. If your environment blocks child processes, `npm test` already runs in-process. Node.js is used for building and tests; jsdom is used only for tests. Visitors need neither.
 
 ## Search and compare
 

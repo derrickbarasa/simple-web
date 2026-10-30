@@ -1,3 +1,7 @@
 # Local design review screenshots
 .impeccable/review/
 node_modules/
+.env
+.env.*
+!.env.example
+dist/

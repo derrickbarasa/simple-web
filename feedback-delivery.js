@@ -31,14 +31,15 @@ function initFeedbackDelivery({ form, outfit, readFeedback, showStatus }) {
         if (document.getElementById("website").value) return;
         const lookName = outfit.options[outfit.selectedIndex].textContent;
         const payload = { name: feedback.name, outfit: lookName, outfit_id: feedback.outfit, message: feedback.comment,
-            _subject: "New feedback from the Couture lookbook", _template: "table", _honey: "" };
+            _subject: form.elements.namedItem("_subject").value, _template: "table", _honey: "" };
         sending = true;
         sendButton.disabled = true;
         sendButton.setAttribute("aria-busy", "true");
         label.textContent = "Sending…";
         showStatus("Sending your feedback. Your text will stay here.");
         try {
-            await deliverFeedback("https://formsubmit.co/ajax/barasaderrick499@gmail.com", payload);
+            const endpoint = form.action.replace("https://formsubmit.co/", "https://formsubmit.co/ajax/");
+            await deliverFeedback(endpoint, payload);
             showStatus(`Your feedback on ${lookName} was submitted to the email service. Thank you for sharing.`, "success");
         } catch {
             showStatus("We could not confirm delivery. Your text is still here. Check your connection before trying again, or save a private copy on this device. If you already submitted, allow time for the email to arrive before retrying.", "error");

@@ -1,8 +1,10 @@
 {
   "name": "simple-web",
   "private": true,
-  "description": "Static fashion lookbook. Dependencies are for tests only.",
+  "description": "Static fashion lookbook with environment-based configuration.",
+  "engines": { "node": ">=22.9.0" },
   "scripts": {
+    "build": "node build.cjs",
     "test": "node --test --test-isolation=none tests/*.test.cjs"
   },
   "devDependencies": {

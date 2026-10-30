@@ -5,7 +5,7 @@ const path = require("node:path");
 const { JSDOM } = require("jsdom");
 
 const root = path.join(__dirname, "..");
-const html = fs.readFileSync(path.join(root, "fashion.html"), "utf8").replace(/<script\b[^>]*><\/script>/g, "");
+const html = require("../build.cjs").renderHtml().replace(/<script\b[^>]*><\/script>/g, "");
 
 // Fresh page per test; scripts run in page order against an http origin so localStorage works.
 function loadPage() {
