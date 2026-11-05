@@ -1,6 +1,6 @@
 # Editorial photography
 
-Eleven photographs are downloaded locally and linked to their creators in the page. The first four were selected from pages explicitly marked Free to use under the Unsplash License. Seven photographic interpretations of original looks were selected from Pexels and visually reviewed before use. Original clothing collages remain in the look breakdowns.
+Eleven photographs are downloaded locally and linked to their creators in the page. The first four were selected from pages explicitly marked Free to use under the Unsplash License. Seven photographic interpretations of original looks were selected from Pexels and visually reviewed before use. 
 
 - **Dion Martins**: [original photograph](https://unsplash.com/photos/man-in-stylish-outfit-walks-down-street-X-Vp-swqmKQ) - Featured hero and Expressive tailoring gallery look. Local asset: `assets/editorial/expressive-layers.jpg`.
 - **Karla Martinez**: [original photograph](https://unsplash.com/photos/two-people-walking-in-the-street-CCRw_jYeUoY) - Personal-style journal story. Local asset: `assets/editorial/street-style-duo.jpg`.
@@ -24,4 +24,4 @@ Eleven photographs are downloaded locally and linked to their creators in the pa
 Licenses: https://unsplash.com/license and https://www.pexels.com/license/
 Source URLs and download provenance: assets/editorial/sources.json
 
-The original seven outfit collages remain the existing project assets. The journal articles, outfit interpretations, color suggestions, and styling tips were written for this site; they do not assert prices, garment brands, exact fiber composition, or endorsements by people pictured.
+The journal articles, outfit interpretations, color suggestions, and styling tips were written for this site; they do not assert prices, garment brands, exact fiber composition, or endorsements by people pictured. The earlier retailer-photo outfit collages were removed on 2026-11-05 because their third-party rights could not be confirmed.

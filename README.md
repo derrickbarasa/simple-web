@@ -51,7 +51,7 @@ The gallery includes nine looks, suggested color palettes, and styling notes cov
 
 Eleven sourced photographs are bundled locally and credited in the page footer and `CREDITS.md`. Source and download URLs are recorded in `assets/editorial/sources.json`. The page requires no image API or remote font service.
 
-All nine looks now lead with photography. The seven original collages remain under Styling notes as outfit breakdowns, with full-size links. The photos interpret the combinations rather than depict the exact garments; palettes and notes preserve the original outfit choices. Selection, comparison, and the image viewer use the lead photographs. Sharp & simple uses a closer view to show the sweater-and-collar layering.
+All nine looks now lead with photography. The earlier outfit collages were removed because they used third-party retailer photos. The photos interpret the combinations rather than depict the exact garments; palettes and notes preserve the original outfit choices. Selection, comparison, and the image viewer use the lead photographs. Sharp & simple uses a closer view to show the sweater-and-collar layering.
 
 ## Style me
 
