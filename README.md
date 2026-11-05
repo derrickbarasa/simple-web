@@ -66,3 +66,7 @@ Run `npm install` once, then `npm test`. The suite covers recommendation and del
 Search matches words across outfit names, colors, pieces, and styling notes, together with the occasion and style filters. Clear search keeps your other filters; Reset filters restores the full collection.
 
 Use Compare look on up to two outfits to see their images, palettes, key pieces, and styling suggestions together. See comparison returns to the comparison section. Remove either look to try another, or clear both. Comparison stays available while filtering and resets when the page reloads; it does not change favorites or feedback selection.
+
+## Ads and privacy
+
+Google AdSense auto ads load through `ad-consent.js` for visitors outside Europe (EEA, UK and Switzerland time zones are skipped because Google requires a certified consent tool there). Visitors can turn ads off from the footer or `privacy.html`, which is built from `privacy.html` with the same settings as the main page. `ads.txt` lives on the root domain site (derrickbarasa.online), not here.

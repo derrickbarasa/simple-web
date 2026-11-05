@@ -22,22 +22,24 @@ function readConfig(overrides = process.env) {
     return config;
 }
 
-function renderHtml(config = readConfig()) {
+function renderHtml(config = readConfig(), file = "fashion.html") {
     const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
-    return fs.readFileSync(path.join(root, "fashion.html"), "utf8").replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
+    return fs.readFileSync(path.join(root, file), "utf8").replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
         if (!(key in config)) throw new Error(`Unknown configuration key: ${key}`);
         return escapeHtml(config[key]);
     });
 }
 
 function build() {
-    const html = renderHtml();
+    const config = readConfig();
+    const html = renderHtml(config);
     const output = path.join(root, "dist");
     fs.mkdirSync(output, { recursive: true });
     for (const file of ["style.css", "style-finder.js", "feedback-delivery.js", "script.js", "ad-consent.js", "assets"]) {
         fs.cpSync(path.join(root, file), path.join(output, file), { recursive: true });
     }
     fs.writeFileSync(path.join(output, "fashion.html"), html);
+    fs.writeFileSync(path.join(output, "privacy.html"), renderHtml(config, "privacy.html"));
     console.log("Built site in dist/. Open dist/fashion.html to preview.");
 }
 
