@@ -34,7 +34,7 @@ function build() {
     const html = renderHtml();
     const output = path.join(root, "dist");
     fs.mkdirSync(output, { recursive: true });
-    for (const file of ["style.css", "style-finder.js", "feedback-delivery.js", "script.js", "assets"]) {
+    for (const file of ["style.css", "style-finder.js", "feedback-delivery.js", "script.js", "ad-consent.js", "assets"]) {
         fs.cpSync(path.join(root, file), path.join(output, file), { recursive: true });
     }
     fs.writeFileSync(path.join(output, "fashion.html"), html);
