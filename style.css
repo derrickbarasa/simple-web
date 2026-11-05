@@ -475,3 +475,6 @@ button, .primary-button, input, select, textarea { transition: background-color 
 .legal h2 { margin: 36px 0 8px; font-size: 22px; }
 .legal ul { padding-left: 20px; }
 .legal .updated { color: var(--muted, inherit); font-size: 14px; }
+.outfit-board { margin: 0 0 24px; }
+.outfit-board img { display: block; width: 100%; max-width: 360px; height: auto; margin-inline: auto; background: #f7f4f1; }
+.outfit-board figcaption { padding-top: 12px; font-size: 13px; line-height: 1.6; text-align: center; }

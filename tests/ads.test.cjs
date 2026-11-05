@@ -41,3 +41,14 @@ test("the privacy page carries the ad notice, controls and contact details", () 
     assert.ok(page.document.querySelector('a[href^="mailto:"]'));
     assert.ok(renderHtml().includes('href="privacy.html"'));
 });
+
+test("outfit boards are original local illustrations, not third-party images", () => {
+    const { document } = new JSDOM(renderHtml()).window;
+    const boards = [...document.querySelectorAll(".outfit-board img")];
+    assert.equal(boards.length, 7);
+    for (const image of boards) {
+        assert.match(image.getAttribute("src"), /^assets[/]boards[/][a-z]+[.]svg$/);
+        assert.ok(fs.existsSync(path.join(__dirname, "..", image.getAttribute("src"))));
+        assert.ok(image.alt.length > 20);
+    }
+});
